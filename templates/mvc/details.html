@@ -1,0 +1,34 @@
+{% extends "mvc/base.html" %}
+{% block title %} 
+	welcome to book {{book.id}}
+{% endblock %}
+
+{% block h1 %} 
+	{{book.name}} 
+{% endblock %}
+
+{% block content %}
+<ul>
+{% for choice in book.choice_set.all %}
+    <li>{{ choice.choice }}  {{choice.votes}}</li>
+{% endfor %}
+</ul>
+
+{%if error_msg %}
+<p><strong>{{error_msg}}</strong></p>
+{% endif %}
+
+<form action='/book/{{book.id}}/votes/' method='post'>
+{% csrf_token %}
+{% for choice in book.choice_set.all %}
+	<input type='radio' name='choice' id='choice{{forloop.counter}}' value='{{choice.id}}'/>
+	<label for="choice{{ forloop.counter }}">{{ choice.choice }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
+{% endblock %}
+
+{% block footer %}
+	<p>Thanks for visiting details {{book.name}} page.</p>
+{% endblock %}
+

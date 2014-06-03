@@ -1,0 +1,26 @@
+{% extends "mvc/base.html" %}
+{% block title %} 
+	welcome to book index 
+{% endblock %}
+
+{% block h1 %} 
+	welcome to book index 
+{% endblock %}
+
+{% block content %}
+	<ul>
+	{% for book in books %}
+		<li><a href="{{book.id}}">{{book.name}}</a>  {{book.pub_date}} </li>
+		<ol>
+			{% for choice in book.choice_set.all %}
+			    <li>{{ choice.choice }}  {{choice.votes}}</li>
+			{% endfor %}
+		</ol>
+	{% endfor %}
+	</ul>
+{% endblock %}
+
+{% block footer %}
+	<hr>
+	<p>Thanks for visiting books.</p>
+{% endblock %}

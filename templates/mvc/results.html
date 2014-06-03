@@ -1,0 +1,23 @@
+{% extends "mvc/base.html" %}
+{% block title %} 
+	welcome to result page 
+{% endblock %}
+
+{% block h1 %} 
+	{{book.name}} 
+{% endblock %}
+
+{% block content %}
+<ul>
+{% for choice in book.choice_set.all %}
+	<li>{{choice.choice}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
+{% endfor %}
+</ul>
+
+<a href='/book/{{book.id}}/'> vote again?</a>
+
+{% endblock %}
+
+{% block footer %}
+	<p>Thanks for visiting vote results.</p>
+{% endblock %}

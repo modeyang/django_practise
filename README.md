@@ -1,4 +1,4 @@
-django_practise
-===============
+Django_Learn
+============
 
-django_practise
+Django_Learn
